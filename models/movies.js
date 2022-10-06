@@ -4,16 +4,16 @@ const Comment = require('./comments');
 
 const Movie = sequelize.define('Movie', {
     name: {
-        type: DataTypes.VARCHAR(50),
+        type: DataTypes.STRING,
         allowNull: false,
         unique: true
     },
     genre: {
-        type: DataTypes.VARCHAR(50),
+        type: DataTypes.STRING,
         allowNull: false
     },
     synopsis:{
-        type: DataTypes.VARCHAR(50),
+        type: DataTypes.STRING,
         allowNull: false,
     },
 });
