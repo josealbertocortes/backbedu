@@ -1,6 +1,7 @@
 const User = require('../models/users');
 const Movie = require('../models/movies');
 
+//VERIFICA SI EL CORREO YA EXISTE PARA SIGNIN
 const validateEmail = async( email = '' ) => {
 
     const emailExists = await User.findOne({ where: {email} });
@@ -8,7 +9,7 @@ const validateEmail = async( email = '' ) => {
         throw new Error(`The email ${email} is already registered`);
     }
 }
-
+//VERIFICA SIN EL CORREO NO EXISTE PARA LOGIN
 const loginEmail = async( email = '' ) => {
 
     const emailExists = await User.findOne({ where: {email} });
@@ -16,7 +17,7 @@ const loginEmail = async( email = '' ) => {
         throw new Error(`The email does not exist`);
     }
 }
-
+//SE ENCARGA DE VER SI EXISTE LA PELICULA CON EL ID DADO
 const existsMovieById = async(id)=>{
     const existsMovie = await Movie.findOne({where:{id}});
     if(!existsMovie){

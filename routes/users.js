@@ -7,11 +7,14 @@ const {
     validateEmail
 } = require('../middlewares/validate-db');
 
+//REGISTRARTE
 router.post('/signUp',[
     //NAME
     check('name', 'Name is required').not().isEmpty(),
     //LASTNAME
     check('lastname', 'Lastname is required').not().isEmpty(),
+    //EMAIL
+    check('email', 'Email is required').not().isEmpty(),
     //VALID EMAIL
     check('email', 'The email is not valid').isEmail(),
     //EXIST EMAIL
@@ -25,6 +28,7 @@ router.post('/signUp',[
     validateFields,
 ],signUp);
 
+//INICIAR SESION
 router.post('/logIn',[
     //VALID EMAIL
     check('email', 'This is not a valid email address').isEmail(),
