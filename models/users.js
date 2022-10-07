@@ -3,6 +3,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/db');
 const jwt = require('jsonwebtoken');
 const secret = require('../config/secret');
+const Comment = require('./comments');
 
 const User = sequelize.define('User', {
     name: {
@@ -30,6 +31,12 @@ const User = sequelize.define('User', {
         allowNull: true,
     }
 });
+
+User.hasMany(Comment,{
+    foreignKey: 'id'
+});
+Comment.belongsTo(User);
+
 
 User.createPassword = function(plainText) {
     const salt = crypto.randomBytes(16).toString('hex');

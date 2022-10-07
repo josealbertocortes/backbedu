@@ -11,7 +11,8 @@ async function createComment(req, res) {
     const comment = await Comment.create(body);
     // set the user (project manager) foreign key
     comment.setUser(user);
-    res.status(201).json(Comment);
+    comment.setMovie(movie);
+    res.status(201).json(comment);
 
 }
 

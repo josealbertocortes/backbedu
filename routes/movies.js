@@ -10,7 +10,7 @@ const auth = require('../config/auth');
 
 router.get('/', getMovies);
 router.get('/:id', getMovie);
-router.post('/', auth.required, createMovie);
+router.post('/', createMovie);
 router.patch('/:id', auth.required, updateMovie);
 router.delete('/:id', auth.required, deleteMovie);
 
