@@ -9,16 +9,16 @@ function getTokenFromHeader(req) {
 }
 
 const auth = {
-    required: function (req, res, next){
-        if(!req.auth || !req.auth.user) {
-            return res.sendStatus(401);
-        }
-        next();
-    },
+    required: expressjwt({
+        secret: secret,
+        algorithms: ['HS256'],
+        userProperty: 'user',
+        getToken: getTokenFromHeader
+    }),
     optional: expressjwt({
         secret: secret,
         algorithms: ['HS256'],
-        userProperty: 'usuario',
+        userProperty: 'user',
         credentialsRequired: false,
         getToken: getTokenFromHeader
     })
