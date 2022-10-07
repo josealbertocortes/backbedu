@@ -10,7 +10,7 @@ const auth = require('../config/auth');
 
 router.get('/', getComment);
 router.get('/:id', getComments);
-router.post('/', auth.required, createComment);
+router.post('/', createComment);
 router.patch('/:id', auth.required, updateComment);
 router.delete('/:id', auth.required, deleteComment);
 

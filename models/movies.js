@@ -19,7 +19,7 @@ const Movie = sequelize.define('Movie', {
 });
 
 Movie.hasMany(Comment,{
-    foreignKey: 'idMovie'
+    foreignKey: 'id'
 });
 Comment.belongsTo(Movie);
 
