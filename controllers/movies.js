@@ -9,21 +9,21 @@ function createMovie(req, res) {
 
 async function getMovie(req, res) {
     const id = req.params.id;
-    const Movie = await Movie.findByPk(id);
-    res.status(200).json(Movie);
+    const movie = await Movie.findByPk(id);
+    res.status(200).json(movie);
 }
 
 async function getMovies(req, res) {
-    const Movies = await Movie.findAll();
-    res.status(200).json(Movies);    
+    const movies = await Movie.findAll();
+    res.status(200).json(movies);    
 }
 
 async function updateMovie(req, res) {
     const id = req.params.id;
-    const Movie = req.body;
-    await Movie.update(Movie, {where: {id}});
-    const Movie_updated = await Movie.findByPk(id);
-    res.status(200).json(Movie_updated);
+    const movie = req.body;
+    await Movie.update(movie, {where: {id}});
+    const movie_updated = await Movie.findByPk(id);
+    res.status(200).json(movie_updated);
 }
 
 async function deleteMovie(req, res) {

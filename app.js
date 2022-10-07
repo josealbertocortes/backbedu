@@ -6,7 +6,14 @@ const routes = require('./routes/index');
 const app = express();
 app.use(express.json());
 app.use('/', routes);
-
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      return res.status(403).send({
+        success: false,
+        message: 'Not authorized'
+      });
+    }
+  });
 
 try {
     sequelize.authenticate();
