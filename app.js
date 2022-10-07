@@ -2,13 +2,18 @@ const dotenv = require('dotenv').config();
 const express = require('express');
 const sequelize = require('./config/db');
 const routes = require('./routes/index');
-const auth = require('./config/auth');
 
 const app = express();
 app.use(express.json());
-app.use(auth.optional);
 app.use('/', routes);
-
+app.use(function (err, req, res, next) {
+    if (err.name === 'UnauthorizedError') {
+      return res.status(403).send({
+        success: false,
+        message: 'Not authorized'
+      });
+    }
+  });
 
 try {
     sequelize.authenticate();

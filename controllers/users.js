@@ -1,4 +1,4 @@
-const User = require('../models/users');
+const User = require('../models/users')
 
 async function signUp(req, res) {
     const body = req.body;
@@ -34,7 +34,7 @@ async function logIn(req, res) {
             token: User.generateJWT(user)
         }); // JWT
     } else {
-        return res.status(400).json({mensaje: "Password Incorrecto"});
+        return res.status(400).json({mensaje: "Incorrect password"});
     }
 }
 
