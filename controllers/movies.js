@@ -1,7 +1,11 @@
 const Movie = require('../models/movies');
 
-function createMovie(req, res) {
+async function createMovie(req, res) {
     const body = req.body;
+    const movie = await Movie.findOne({ where: { name: body["name"]} });
+    if(movie){
+        res.status(400).json({"details":"La pelicula ya se encuentra registrada "})
+    }
     Movie.create(body).then(Movie => {
         res.status(201).json(Movie);
     });
